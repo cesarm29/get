@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" id="superior">
+    </div>
+    <div class="col-md-12" id="blue">
+
+    </div>
+    <div class="col-md-12" id="inferior">
+
+    </div>
+  </div>
+
+  <div class="shadow p-3 mb-5 bg-white rounded" id="form">
+    <h3 class="text-center">Cotiza tu Seguro Automotriz</h3>
+    <h4 class="text-center">¡Resultados Instantáneos!</h4>
+    <hr>
+    <form [formGroup]="loadForm" (ngSubmit)="onSubmit()">
+      <div id="contenedorForm">
+
+        <div class="alert alert-danger alert-dismissable fuente-project" *ngIf="msg">
+          <a class="close" (click)="closeAlert()">
+            &times;
+          </a>
+          <h6>{{msg}}</h6>
+        </div>
+        <div class="alert alert-success alert-dismissable fuente-project" *ngIf="msgex">
+          <a class="close" (click)="closeAlertEx()">
+            &times;
+          </a>
+          <h6>{{msgex}}</h6>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="labelMarca">Marca de Auto</label>
+            <select class="form-control" formControlName="marca" id="marca" placeholder="Marca" (change)="getModelo($event.target.value)" >
+                <option value="" selected>Seleccione la marca</option>
+              <option *ngFor="let marca of listaMarcas" value="{{marca.id}}">{{marca.nombre}}</option>
+            </select>
+            <span>
+              <div *ngIf="submitted && f.marca.errors">
+                <div *ngIf="f.marca.errors.required"> <p id="error">La marca es requerida</p></div>
+              </div>
+            </span>
+          </div>
+          <div class="col-md-6">
+            <label for="labelModelo">Modelo de Auto</label>
+            <select class="form-control" formControlName="modelo" id="modelo" placeholder="Modelo">
+              <option value="" selected>Seleccione el modelo</option>
+              <option *ngFor="let modelo of listaModelos" value="{{modelo.id}}">{{modelo.nombre}}</option>
+            </select>
+            <span>
+              <div *ngIf="submitted && f.modelo.errors">
+                <div *ngIf="f.modelo.errors.required"> <p id="error">El modelo es requerido</p></div>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <br>
+          <div class="col-md-4">
+            <label for="labelAño">Año</label>
+            <select class="form-control" formControlName="anio" id="anio" placeholder="Año"  >
+              <option value="" selected>Seleccione el año</option>
+              <option *ngFor="let anio of listaAnio" value="{{anio.id}}">{{anio.anio}}</option>
+            </select>
+            <span>
+              <div *ngIf="submitted && f.anio.errors">
+                <div *ngIf="f.anio.errors.required"> <p id="error">El año es requerido</p></div>
+              </div>
+            </span>
+          </div>
+          <div class="col-md-8">
+            <label for="labelEmail">Email</label>
+            <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email">
+            <span>
+              <div *ngIf="submitted && f.email.errors">
+                <div *ngIf="f.email.errors.required"> <p id="error">El email es requerido</p></div>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <br>
+            <br>
+            <button type="submit" class="btn  btn-lg btn-block">Cotizar</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <br>
+            <a href="">Recuperar Cotización</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
